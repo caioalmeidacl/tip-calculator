@@ -16,3 +16,168 @@
     font-family: "Space Mono", sans-serif;
     font-weight: 700;
 }
+
+#container {
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "form"; 
+    grid-template-rows: 0.3fr 1fr;
+    grid-template-columns: 1fr;
+    min-width: 290px;
+}
+
+header {
+    grid-area: header;
+    background-color: var(--light-grayish-cyan);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+form {
+    grid-area: form;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 30px;
+    margin-top: -20px;
+    background-color: var(--white);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+section{
+    margin-bottom: 40px;
+}
+
+.label {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--dark-grayis-cyan);
+}
+
+input {
+    background-color: var(--very-light-grayish-cyan);
+    border: none;
+}
+
+#bill, #people {
+    background-image: url("./images/icon-dollar.svg");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 20px center;
+    width: 100%;
+    padding: 10px 20px ;
+    text-align: right;
+    color: var(--very-dark-cyan);
+    font-size: 24px;
+} 
+
+#bill.correct,  #people.correct {
+    outline-color: var(--strong-cyan);
+}
+
+#bill.error, #people.error   {
+    outline-color: rgba(255, 0, 0, 0.561);
+
+}
+
+.error-msg {
+    font-size: 15px;
+    margin-left: auto;
+    color: rgba(255, 0, 0, 0.561);
+}
+
+#tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 150px));
+    gap: 13px;
+    max-width: 320px;
+}
+
+.tip {
+    font-size: 24px;
+    background-color: var(--very-dark-cyan);
+    color: var(--white);
+    cursor: pointer;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+.tip-custom {
+    font-size: 24px;
+    text-align: right;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--very-dark-cyan);
+}
+.tip-custom::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.tip-custom::placeholder{
+    color: var(--dark-grayis-cyan);
+    padding-right: 15px;
+}
+
+#people {
+    background-image: url("./images/icon-person.svg");
+}
+
+#people::placeholder, #bill::placeholder{
+    color: var(--dark-grayis-cyan);
+}
+
+#result {
+    background-color: var(--very-dark-cyan);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.amount,.total {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.desc h1{ 
+    font-size: 16px;
+}
+
+.desc p{ 
+    color: var(--dark-grayis-cyan);
+    font-size: 13px;
+}
+
+.price {
+    margin-left: auto;
+    font-size: 30px;
+    color: var(--strong-cyan);
+}
+
+#result button {
+    margin-top: 15px;
+    background-color: var(--strong-cyan);
+    border: none;
+    width: 100%;
+    text-transform: uppercase;
+    color: var(--very-dark-cyan);
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#result button:hover {
+    background-color: var(--light-grayish-cyan);
+}
