@@ -58,13 +58,13 @@ section{
 
 .label {
     font-size: 18px;
-    margin-bottom: 15px;
     color: var(--dark-grayis-cyan);
 }
 
 input {
     background-color: var(--very-light-grayish-cyan);
     border: none;
+    margin-top: 10px;
 }
 
 #bill, #people {
@@ -88,7 +88,11 @@ input {
 
 }
 
+.label-container {
+    display: flex;
+}
 .error-msg {
+    display: none;
     font-size: 15px;
     margin-left: auto;
     color: rgba(255, 0, 0, 0.561);
@@ -108,6 +112,16 @@ input {
     cursor: pointer;
     padding: 5px 0;
     border-radius: 5px;
+}
+
+.tip:hover {
+    background-color: var(--light-grayish-cyan);
+    color: var(--very-dark-cyan);
+}
+
+.tip.selected {
+    background: var(--strong-cyan);
+    color: var(--very-dark-cyan);
 }
 
 .tip-custom {

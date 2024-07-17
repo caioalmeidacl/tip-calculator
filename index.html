@@ -40,10 +40,12 @@
         </section>
 
         <section>
-          <label for="people" class="label">Number of People</label>
-          <span class="error-msg">Cant't be zero</span>
+          <div class="label-container">
+            <label for="people" class="label">Number of People</label>
+            <span class="error-msg">Can't be zero</span>
+          </div>
           <input type="text" id="people" placeholder="0">
-          </section>
+        </section>
 
 
         <section id="result">
@@ -53,7 +55,7 @@
                 <h1>Tip Amount</h1>
                 <p>/ person</p>
               </div>
-              <span class="price">$4.27</span>
+              <span class="price"></span>
             </div>
 
             <div class="total">
@@ -61,7 +63,7 @@
                 <h1>Total</h1>
                 <p>/ person</p>
               </div>
-              <span class="price">$34.27</span>
+              <span class="price"></span>
             </div>
           </div>
           <button type="submit">Reset</button>
