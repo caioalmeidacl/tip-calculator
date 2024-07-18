@@ -3,40 +3,43 @@ const people = document.querySelector("#people");
 const tipButtons = document.querySelectorAll(".tip");
 const customTip = document.querySelector(".tip-custom");
 const errorMsg = document.querySelector(".error-msg");
-
-const isBillValid = Number(bill.value) >= 0;
-const isPeopleValid = Number(people.value) > 0;
-
+const submitBtn = document.querySelector(".submit");
 function handleStatus() {
     
     bill.addEventListener("input", () => {
+        isBillValid = Number(bill.value) >= 0;
         bill.classList.toggle("correct", isBillValid);
         bill.classList.toggle("error", !isBillValid);
         calcBill();
     });
     
-    people.addEventListener("input", () => {      
+    people.addEventListener("input", () => {     
+        isPeopleValid = Number(people.value) > 0
         people.classList.toggle("correct", isPeopleValid);
         people.classList.toggle("error", !isPeopleValid); 
         people.classList.contains("error") ? 
             errorMsg.style.display = "block":  
                     errorMsg.style.display = "none";
+
+
+        submitBtn.classList.add("active");
         calcBill();
     });
 
 
     tipButtons.forEach(button => {
         button.addEventListener("click", () => {
-    
         tipButtons.forEach(btn => btn.classList.remove("selected"));
         button.classList.add("selected");
-    
-    
-            customTip.addEventListener('input', () => {
-                tipButtons.forEach(btn => btn.classList.remove('selected'));
-            });
         });
     });
+
+    customTip.addEventListener("input", () => {
+        tipButtons.forEach(btn => btn.classList.remove('selected'));
+        const tip = customTip.value >= 0;
+        customTip.classList.toggle("correct", tip);
+        customTip.classList.toggle("error", !tip);
+    });     
 }
 
 function checkTipSelection() {
@@ -56,7 +59,7 @@ function checkTipSelection() {
 }
 
 function getData() {
-    return [Number(bill.value), Number(checkTipSelection()), (people.value)];
+    return [Number(bill.value), Number(checkTipSelection()), Number(people.value)];
 }
 
 function displayResult(amount="0.00", total="0.00"){
@@ -66,11 +69,12 @@ function displayResult(amount="0.00", total="0.00"){
 }
 
 function calcBill(){ 
-    const hasValue = (bill.value && people.value) && (isBillValid && isPeopleValid);
+    const hasValue = (bill.value && people.value);
     if(!hasValue) {
         displayResult();
         return;
     }
+    c
     const [billValue, tip, peopleValue] = getData();
     const tipAmount = (billValue * tip) / peopleValue;  
     const total = (billValue / peopleValue) + tipAmount;
@@ -81,6 +85,7 @@ function calcBill(){
 
 function handleForm(e) {
     e.preventDefault();
+    submitBtn.classList.remove("active");
     bill.value = '';
     people.value = '';
     customTip.value = '';

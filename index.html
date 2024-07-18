@@ -21,32 +21,32 @@
     </header>
     <form action="/" method="POST">
       <div class="wrapper">
-
-        <section>
-          <label for="bill" class="label">Bill</h2>
-          <input type="text" id="bill" placeholder="0" />
+        <div class="datas">
+          <section>
+            <label for="bill" class="label">Bill</label>
+            <input type="text" id="bill" placeholder="0" />
           </section>
-
-        <section>
-          <h1 class="label">Select Tip %</h1>
-          <div id="tips">
-            <input type="button" class="tip" value="5%" />
-            <input type="button" class="tip" value="10%" />
-            <input type="button" class="tip" value="15%" />
-            <input type="button" class="tip" value="25%" />
-            <input type="button" class="tip" value="50%" />
-            <input type="number" class="tip-custom" placeholder="Custom">
-          </div>
-        </section>
-
-        <section>
-          <div class="label-container">
-            <label for="people" class="label">Number of People</label>
-            <span class="error-msg">Can't be zero</span>
-          </div>
-          <input type="text" id="people" placeholder="0">
-        </section>
-
+  
+          <section>
+            <h1 class="label">Select Tip %</h1>
+            <div id="tips">
+              <input type="button" class="tip" value="5%" />
+              <input type="button" class="tip" value="10%" />
+              <input type="button" class="tip" value="15%" />
+              <input type="button" class="tip" value="25%" />
+              <input type="button" class="tip" value="50%" />
+              <input type="number" class="tip-custom" placeholder="Custom">
+            </div>
+          </section>
+  
+          <section>
+            <div class="label-container">
+              <label for="people" class="label">Number of People</label>
+              <span class="error-msg">Can't be zero</span>
+            </div>
+            <input type="text" id="people" placeholder="0">
+          </section>
+        </div>
 
         <section id="result">
           <div>
@@ -66,7 +66,7 @@
               <span class="price"></span>
             </div>
           </div>
-          <button type="submit">Reset</button>
+          <button type="submit" class="submit">Reset</button>
         </section>
       </div>
     </form>

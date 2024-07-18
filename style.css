@@ -9,6 +9,7 @@
     --very-light-grayish-cyan: hsl(189, 41%, 97%);
     --white: hsl(0, 0%, 100%);
 } 
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -79,11 +80,11 @@ input {
     font-size: 24px;
 } 
 
-#bill.correct,  #people.correct {
+.correct {
     outline-color: var(--strong-cyan);
 }
 
-#bill.error, #people.error   {
+.error  {
     outline-color: rgba(255, 0, 0, 0.561);
 
 }
@@ -102,7 +103,6 @@ input {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 150px));
     gap: 13px;
-    max-width: 320px;
 }
 
 .tip {
@@ -119,7 +119,7 @@ input {
     color: var(--very-dark-cyan);
 }
 
-.tip.selected {
+.selected {
     background: var(--strong-cyan);
     color: var(--very-dark-cyan);
 }
@@ -136,7 +136,7 @@ input {
 }
 .tip-custom::placeholder{
     color: var(--dark-grayis-cyan);
-    padding-right: 15px;
+    text-align: center;
 }
 
 #people {
@@ -178,13 +178,13 @@ input {
     color: var(--strong-cyan);
 }
 
-#result button {
+.submit {
     margin-top: 15px;
-    background-color: var(--strong-cyan);
+    background-color: hsl(172, 67%, 30%);
+    color: hsl(172, 67%, 15%);
     border: none;
     width: 100%;
     text-transform: uppercase;
-    color: var(--very-dark-cyan);
     align-items: center;
     padding: 10px;
     cursor: pointer;
@@ -192,6 +192,72 @@ input {
     border-radius: 5px;
 }
 
-#result button:hover {
+.active {
+    background-color: var(--strong-cyan);
+    color: var(--very-dark-cyan);
+}
+
+.submit:hover {
     background-color: var(--light-grayish-cyan);
+    color: var(--very-dark-cyan);
+}
+
+
+@media (min-width: 1024px) {
+    body{
+        background-color: var(--light-grayish-cyan);
+    }    
+    
+    #container {
+        max-width: 950px;
+        margin-inline: auto;
+        grid-template-rows: .5fr 1fr;
+    }
+
+
+    section:last-child {
+        margin: 0;
+    }
+
+    form {
+        max-height: 470px;
+        border-radius: 15px;
+    }
+
+    .datas {
+        width: 400px;
+        margin-right: 50px;
+    }
+    
+    .wrapper {
+        margin: 0;
+        padding: 0;
+        flex-direction: row;
+    }
+
+    #tips {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 123px));
+        gap: 0px 15px ;
+        max-width: 100%;
+    }
+
+    #result {
+        width: 420px;
+        padding: 30px;
+    }
+
+    #result button {
+        font-size: 20px;
+    }
+    .amount, .total {
+        padding: 5px 10px;
+    }
+    .amount {
+        margin-bottom: 25px;
+    }
+    .price { 
+        font-size: 40px;
+    }
+
+
 }
