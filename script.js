@@ -7,14 +7,14 @@ const submitBtn = document.querySelector(".submit");
 function handleStatus() {
     
     bill.addEventListener("input", () => {
-        isBillValid = Number(bill.value) >= 0;
+        const isBillValid = Number(bill.value) >= 0;
         bill.classList.toggle("correct", isBillValid);
         bill.classList.toggle("error", !isBillValid);
         calcBill();
     });
     
     people.addEventListener("input", () => {     
-        isPeopleValid = Number(people.value) > 0
+        const isPeopleValid = Number(people.value) > 0
         people.classList.toggle("correct", isPeopleValid);
         people.classList.toggle("error", !isPeopleValid); 
         people.classList.contains("error") ? 
@@ -35,10 +35,11 @@ function handleStatus() {
     });
 
     customTip.addEventListener("input", () => {
-        tipButtons.forEach(btn => btn.classList.remove('selected'));
+        tipButtons.forEach(btn => btn.classList.remove("selected"));
         const tip = customTip.value >= 0;
         customTip.classList.toggle("correct", tip);
         customTip.classList.toggle("error", !tip);
+        calcBill();
     });     
 }
 
@@ -74,7 +75,6 @@ function calcBill(){
         displayResult();
         return;
     }
-    c
     const [billValue, tip, peopleValue] = getData();
     const tipAmount = (billValue * tip) / peopleValue;  
     const total = (billValue / peopleValue) + tipAmount;

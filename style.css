@@ -65,16 +65,17 @@ section{
 input {
     background-color: var(--very-light-grayish-cyan);
     border: none;
-    margin-top: 10px;
-}
+    margin-top: 0px;
+    border-radius: 5px;
+}   
 
 #bill, #people {
     background-image: url("./images/icon-dollar.svg");
     background-repeat: no-repeat;
-    background-size: 15px;
+    background-size: 12px;
     background-position: 20px center;
     width: 100%;
-    padding: 10px 20px ;
+    padding: 5px 20px;
     text-align: right;
     color: var(--very-dark-cyan);
     font-size: 24px;
@@ -211,12 +212,19 @@ input {
     #container {
         max-width: 950px;
         margin-inline: auto;
-        grid-template-rows: .5fr 1fr;
+        grid-template-rows: .8fr 1fr;
     }
 
-
+    section{
+        margin-bottom: 30px;
+    }
     section:last-child {
         margin: 0;
+    }
+
+    .label {
+        font-size: 16px;
+        margin: 0 0 2px;
     }
 
     form {
@@ -227,6 +235,7 @@ input {
     .datas {
         width: 400px;
         margin-right: 50px;
+        padding: 10px 0 0;
     }
     
     .wrapper {
@@ -237,15 +246,15 @@ input {
 
     #tips {
         grid-template-columns: repeat(auto-fit, minmax(80px, 123px));
-        gap: 0px 15px ;
+        gap: 15px;
         max-width: 100%;
+        margin-top: 15px;
     }
 
     #result {
         width: 420px;
-        padding: 30px;
+        padding: 40px 30px;
     }
-
     #result button {
         font-size: 20px;
     }
