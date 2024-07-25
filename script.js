@@ -1,66 +1,70 @@
-const bill = document.querySelector("#bill"); 
-const people = document.querySelector("#people");
-const tipButtons = document.querySelectorAll(".tip");
-const customTip = document.querySelector(".tip-custom");
+const inputs = document.querySelectorAll('.input');
+const tipElements = document.querySelectorAll(".tip-custom, .tip");
 const errorMsg = document.querySelector(".error-msg");
 const submitBtn = document.querySelector(".submit");
+
+
 function handleStatus() {
-    
-    bill.addEventListener("input", () => {
-        const isBillValid = Number(bill.value) >= 0;
-        bill.classList.toggle("correct", isBillValid);
-        bill.classList.toggle("error", !isBillValid);
-        calcBill();
-    });
-    
-    people.addEventListener("input", () => {     
-        const isPeopleValid = Number(people.value) > 0
-        people.classList.toggle("correct", isPeopleValid);
-        people.classList.toggle("error", !isPeopleValid); 
-        people.classList.contains("error") ? 
-            errorMsg.style.display = "block":  
+    inputs.forEach(input => { 
+        let validation = Number(input.value) >= 0;
+        input.addEventListener("input", () => { 
+            if(input.id !== "bill") validation =  Number(input.value) > 0;            
+            input.classList.toggle("correct", validation);
+            input.classList.toggle("error", !validation);
+
+            if(input.id === "people")
+                input.classList.contains("error") ?  
+                    errorMsg.style.display = "block" :
                     errorMsg.style.display = "none";
-
-
-        submitBtn.classList.add("active");
-        calcBill();
-    });
-
-
-    tipButtons.forEach(button => {
-        button.addEventListener("click", () => {
-        tipButtons.forEach(btn => btn.classList.remove("selected"));
-        button.classList.add("selected");
+            calcBill();
         });
+        submitBtn.classList.add("active");
     });
 
-    customTip.addEventListener("input", () => {
-        tipButtons.forEach(btn => btn.classList.remove("selected"));
-        const tip = customTip.value >= 0;
-        customTip.classList.toggle("correct", tip);
-        customTip.classList.toggle("error", !tip);
-        calcBill();
-    });     
-}
 
-function checkTipSelection() {
-    let tipSelected = false;
-    let value = 0
-    tipButtons.forEach(button => {
-        if (button.classList.contains('selected')) {
-            tipSelected = true;
-            let percent = button.value;
-            value = percent.substr(0,percent.length - 1);
+    tipElements.forEach(element => {
+        element.addEventListener("input", () => {
+            tipElements.forEach(element => {
+                element.classList.remove('selected')
+            });
+            let isValid = element.value >= 0;
+            element.classList.toggle("correct", isValid);
+            element.classList.toggle("error", !isValid);
+            calcBill(); 
+        });    
+                 
+        if(element.classList.contains("tip")) {
+            element.addEventListener("click", () => {
+                tipElements.forEach(element => {
+                    element.classList.remove("selected");
+                    if(element.classList.contains("tip-custom")) element.value = "";
+                });
+                element.classList.add("selected");
+                calcBill(); 
+            });            
         }
     });
+}
 
-    if (!tipSelected && customTip.value) value = customTip.value;
 
-    return (value / 100);
+function checkTipSelection() {
+    let isTipSelected = false;
+    let value = 0;
+    tipElements.forEach(element => {
+        if (element.classList.contains('selected')) {
+            isTipSelected = true;
+            let percent = element.value;
+            value = percent.substr(0,percent.length - 1);
+            return;
+        }
+        if(element.classList.contains("tip-custom") && !isTipSelected) value = element.value;
+    });
+
+    return (value / 100);    
 }
 
 function getData() {
-    return [Number(bill.value), Number(checkTipSelection()), Number(people.value)];
+    return [Number(inputs[0].value), Number(checkTipSelection()), Number(inputs[1].value)];
 }
 
 function displayResult(amount="0.00", total="0.00"){
@@ -70,12 +74,13 @@ function displayResult(amount="0.00", total="0.00"){
 }
 
 function calcBill(){ 
-    const hasValue = (bill.value && people.value);
-    if(!hasValue) {
+    const hasValue = Array.from(inputs).filter(input => input.value === "");
+    if(hasValue.length !== 0) {
         displayResult();
         return;
     }
     const [billValue, tip, peopleValue] = getData();
+    console.log(billValue, tip, peopleValue);
     const tipAmount = (billValue * tip) / peopleValue;  
     const total = (billValue / peopleValue) + tipAmount;
 
@@ -86,14 +91,15 @@ function calcBill(){
 function handleForm(e) {
     e.preventDefault();
     submitBtn.classList.remove("active");
-    bill.value = '';
-    people.value = '';
-    customTip.value = '';
-    tipButtons.forEach(btn => btn.classList.remove('selected'));
-    displayResult();
 
-    bill.classList.remove('correct', 'error');
-    people.classList.remove('correct', 'error');
+    inputs.forEach(input => input.value = "");
+
+    tipElements.forEach(element => {
+        element.classList.remove('selected')
+        if(element.classList.contains("tip-custom"))
+            element.value = "";
+    });
+    displayResult();
     errorMsg.style.display = "none";
 }
 
